@@ -1,7 +1,9 @@
 # Assignment 2 - Text classification benchmarks
+This is the repository for the second assignment in the course Language Analytics from the bachelors elective Cultural Data Science at Aarhus University.
 
 ## 1. Contributions
 This code was written independently by me. 
+#TODO find the help sources! 
 ## 2. Assignment description by instructor
 This is the repository for the first assignment in the course Language Analytics from the bachelors elective course Cultural Data Science at Aarhus University
 
@@ -35,7 +37,8 @@ For this assignment, you are welcome to submit your code either as a Jupyter Not
 Lastly, you are welcome to edit this README file to contain whatever informatio you like. Remember - documentation is important!
 
 ## 3. Methods
-
+This repository contains two scripts in the folder ```src```-
+The script ```logistic_regression.py``` trains and saves a logistic regression modifier and saves the data. The saved data will
 
 ## 4. Usage
 The script is written in python 3.10.7. Make sure this is the python version you have installed on your device.
@@ -44,8 +47,11 @@ From the command line clone this GitHub repository to your current location (thi
 From the command line, located in the main directory, run the command `bash setup.sh`. This will install the packages found in the ```requirements.txt``` file, which is required to run the script.
 
 ### 4.2 Get the data 
-The data is located in the folder ```in```. THe data
-### 4.3 run the script 
+The data is located in the folder ```in```. The data is called ```fake_or_real_news.csv``` 
+#### **TODO** find out where dataset is from
+### 4.3 Run the script 
+From the command line, located in the main directory, run the command `python3 src/logistic_regression.py` to run the script that trains a logistic regression classifier and saves the data.
+Afterward, in order to run the script that trains a neural network and saves the data, run the command `python3 src/neural_network.py`
 
 ## 5. Results
 The models and vectorizers are saved in the folder ```models```
@@ -80,4 +86,4 @@ weighted avg       0.82      0.82      0.82      1267
    macro avg       0.89      0.89      0.89      1267
 weighted avg       0.89      0.89      0.89      1267
 
-The accuracy of the logical regression classifier is 0.82 and for the neural network 0.89. The Neural Network is performing better than the logical regression, which can ebe explained by the fact that the logistic regression classifier assumes a linear relationship between the features while a neural network is better at learning more complex and non-linear relationship between the text-data. 
+The accuracy of the logical regression classifier is 0.82 and for the the neural network 0.89. The neural network performs better than the logical regression, which can be explained by the fact that the logistic regression classifier assumes a linear relationship between the features while a neural network is better at learning more complex and non-linear relationship between the text-data. 
