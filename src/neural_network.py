@@ -26,6 +26,7 @@ from sklearn import metrics
 import matplotlib.pyplot as plt
 
 # importing argument parser
+# TODO find out how to make real argparse
 import argparse
 from argparse import ArgumentParser
 parser = ArgumentParser()
@@ -74,9 +75,21 @@ def MLP_model(X_train_feats, X_test_feats, y_train):
     return y_pred, classifier
 
 #Classifier report
-def classifier_report(y_test, y_pred):
+def classifier_report(y_test, y_pred, classifier, vectorizer):
+    #Saving classification report
     classifier_metrics = metrics.classification_report(y_test, y_pred)
-    return classifier_metrics
+    report_path = os.path.join("out", "NN_classification_report.txt")
+    with open(report_path, 'w') as f:
+        f.write(classifier_metrics)
+    # save the trained models and vectorizers
+    from joblib import dump, load
+    # classifier and vecotrizer output paths
+    classifier_path = os.path.join("models", "NN_model.joblib")
+    vectorizer_path = os.path.join("models", "TF-IDF_vectorizer.joblib")
+    # save the model
+    dump(classifier, classifier_path)
+    # save the vectorizer
+    dump(vectorizer, vectorizer_path)
 
 #main function
 def main():
@@ -86,17 +99,9 @@ def main():
     vectorizer, X_train_feats, X_test_feats = vectorize_data(X_train, X_test)
     # run classifier
     y_pred, classifier = MLP_model(X_train_feats, X_test_feats, y_train)
-
-    #Saving classification report
-    classifier_metrics = metrics.classification_report(y_test, y_pred)
-    with open('classification_report.txt', 'w') as f:
-        f.write(classifier_metrics)
-    # save the trained models and vectorizers
-    from joblib import dump, load
-    # save the model
-    dump(classifier, os.path.join("out", "NN_model.joblib"))
-    # save the vectorizer
-    dump(vectorizer, os.path.join("models", "tfidf_vectorizer.joblib"))
+    # save model
+    classifier_report(y_test, y_pred, classifier, vectorizer)
+    
 
 # calling main function
 if __name__== "__main__":
